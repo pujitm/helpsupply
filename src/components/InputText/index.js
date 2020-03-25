@@ -1,6 +1,6 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
 import React from 'react'
+import { jsx } from '@emotion/core'
 
 import styles from './InputText.styles'
 
@@ -10,7 +10,7 @@ class InputText extends React.Component {
 
     this.state = {
       isFocused: false,
-      value: ''
+      value: '',
     }
   }
 
@@ -29,11 +29,20 @@ class InputText extends React.Component {
     return (
       <label css={[styles.root, isFocused && styles.active]}>
         {label && (
-          <div css={[styles.label, (isFocused || value) && styles.activeLabel]}>{label}</div>
+          <div css={[styles.label, (isFocused || value) && styles.activeLabel]}>
+            {label}
+          </div>
         )}
-        <input css={styles.input} onBlur={this.toggleFocus} onFocus={this.toggleFocus} onChange={this.onChange} value={value} {...rest} />
+        <input
+          css={styles.input}
+          onBlur={this.toggleFocus}
+          onFocus={this.toggleFocus}
+          onChange={this.onChange}
+          value={value}
+          {...rest}
+        />
       </label>
-    );
+    )
   }
 }
 
