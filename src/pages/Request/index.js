@@ -8,9 +8,9 @@ import AutosuggestHighlightParse from 'autosuggest-highlight/parse'
 import Text from 'components/Text'
 import { TEXT_TYPE } from 'components/Text/constants'
 import { withRouter } from 'react-router-dom'
-import { Form } from 'react-bootstrap'
 import Autosuggest from 'components/Autosuggest'
 import Box from 'components/Box'
+import Header from 'components/Header'
 import { IconButton, PrimaryButton } from 'components/Button'
 import { ReactComponent as Back } from 'static/icons/back-circle.svg'
 
@@ -128,35 +128,38 @@ class Request extends React.Component {
 
   render() {
     return (
-      <Box>
-        <form onSubmit={this.handleRedirect} css={styles.root}>
-          <div css={styles.form}>
-            <IconButton css={styles.back}>
-              <Back />
-            </IconButton>
-            <Text as="h3" type={TEXT_TYPE.HEADER_3} css={styles.title}>
-              Find your healthcare facility
-            </Text>
-            <Text as="p" type={TEXT_TYPE.BODY_2}>
-              I'm a healthcare professional working at:
-            </Text>
-            <Autosuggest
-              label="City or healthcare facility"
-              suggestions={this.state.results}
-              onSearch={this.handleChange}
-              getSuggestionValue={getHospitalName}
-              renderSuggestion={renderSuggestion}
-              onSelect={this.handleSelectHospital}
-            />
-          </div>
-          <PrimaryButton
-            onClick={this.handleRedirect}
-            disabled={!this.state.selectedResult}
-            css={styles.button}>
-            <Text type={TEXT_TYPE.BODY_1}>Next</Text>
-          </PrimaryButton>
-        </form>
-      </Box>
+      <div>
+        <Header />
+        <Box>
+          <form onSubmit={this.handleRedirect} css={styles.root}>
+            <div css={styles.form}>
+              <IconButton css={styles.back}>
+                <Back />
+              </IconButton>
+              <Text as="h3" type={TEXT_TYPE.HEADER_3} css={styles.title}>
+                Find your healthcare facility
+              </Text>
+              <Text as="p" type={TEXT_TYPE.BODY_2}>
+                I'm a healthcare professional working at:
+              </Text>
+              <Autosuggest
+                label="City or healthcare facility"
+                suggestions={this.state.results}
+                onSearch={this.handleChange}
+                getSuggestionValue={getHospitalName}
+                renderSuggestion={renderSuggestion}
+                onSelect={this.handleSelectHospital}
+              />
+            </div>
+            <PrimaryButton
+              onClick={this.handleRedirect}
+              disabled={!this.state.selectedResult}
+              css={styles.button}>
+              <Text type={TEXT_TYPE.BODY_1}>Next</Text>
+            </PrimaryButton>
+          </form>
+        </Box>
+      </div>
     )
   }
 }
